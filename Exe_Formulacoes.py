@@ -4,6 +4,24 @@ import numpy as np
 
 st.title('Trabalhando com Abas')
 
+uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
+
+if uploaded_file is not None:
+    try:
+        df = pd.read_csv(uploaded_file)
+        st.write("Data loaded successfully:")
+        st.dataframe(df)
+        
+        # You can add further processing or visualization here
+        st.subheader("Basic Statistics")
+        st.write(df.describe())
+
+    except Exception as e:
+        st.error(f"Error loading CSV: {e}")
+else:
+    st.info("Please upload a CSV file to get started.")
+
+
 aba1, aba2, aba3, aba4, aba5 = st.tabs(['Plano Inclinado',
                             'Meia Vida',
                             'Lançamento Obriquo',
@@ -171,5 +189,6 @@ with aba5:
         st.subheader(f'{CA}')
     
     
+
 
 
